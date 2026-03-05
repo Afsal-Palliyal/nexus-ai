@@ -98,7 +98,7 @@ This project was built as part of my **frontend development portfolio** to pract
 
 **Afsal P**
 
-Frontend Developer | React Learner
+Frontend Developer | React
 
 GitHub  
 https://github.com/Afsal-Palliyal
