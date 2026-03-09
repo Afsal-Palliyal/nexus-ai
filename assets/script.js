@@ -126,6 +126,44 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.observe(el);
    });
 
+   // Theme toggle logic -------------------------------------------------
+   const themeToggle = document.getElementById("theme-toggle");
+
+   function updateThemeIcon(theme) {
+      const icon = themeToggle && themeToggle.querySelector("i");
+      if (!icon) return;
+      icon.setAttribute("data-lucide", theme === "dark" ? "sun" : "moon");
+      window.lucide && window.lucide.createIcons();
+   }
+
+   function applyTheme(theme) {
+      document.body.classList.toggle("dark-mode", theme === "dark");
+      updateThemeIcon(theme);
+   }
+
+   if (themeToggle) {
+      themeToggle.addEventListener("click", () => {
+         const isDark = document.body.classList.toggle("dark-mode");
+         const chosen = isDark ? "dark" : "light";
+         localStorage.setItem("theme", chosen);
+         updateThemeIcon(chosen);
+      });
+   }
+
+   // initialize based on stored preference or system setting
+   (function () {
+      const stored = localStorage.getItem("theme");
+      if (stored) {
+         applyTheme(stored);
+      } else {
+         const prefers = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+         applyTheme(prefers);
+      }
+   })();
+
    // Set current year in footer
    document.getElementById("year").textContent = new Date().getFullYear();
 });
