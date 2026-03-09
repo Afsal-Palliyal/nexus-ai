@@ -127,7 +127,8 @@ a {
 }
 
 .btn-secondary:hover {
-   background: #222;
+   background: white;
+   color: var(--text);
 }
 
 .btn-white {
