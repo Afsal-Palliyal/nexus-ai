@@ -128,7 +128,12 @@ a {
 
 .btn-secondary:hover {
    background: white;
-   color: var(--text);
+   color: #000;
+}
+
+.dark-mode .btn-secondary:hover {
+   background: var(--accent);
+   color: white;
 }
 
 .btn-white {
@@ -179,6 +184,13 @@ a {
    z-index: 1000;
    padding: 1.25rem 0;
    transition: all 0.4s ease;
+   background: rgba(255, 255, 255, 0.95);
+   backdrop-filter: blur(8px);
+   -webkit-backdrop-filter: blur(8px);
+}
+
+.dark-mode .navbar {
+   background: transparent;
 }
 
 .navbar.scrolled {
@@ -232,6 +244,10 @@ a {
 .nav-links a {
    font-size: 0.875rem;
    font-weight: 500;
+   color: var(--text-muted);
+}
+
+.dark-mode .nav-links a {
    color: var(--text-muted);
 }
 
@@ -860,6 +876,7 @@ input:checked + .slider:before {
 .cta-content h2 {
    font-size: 4rem;
    margin-bottom: 2rem;
+   color: white;
 }
 
 .cta-content p {
@@ -867,6 +884,7 @@ input:checked + .slider:before {
    max-width: 600px;
    margin: 0 auto 3rem;
    opacity: 0.9;
+   color: white;
 }
 
 .cta-actions {
