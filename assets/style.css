@@ -93,15 +93,33 @@ a {
 }
 
 .btn-primary {
-   background: var(--accent);
+   background: var(--accent-gradient);
    color: white !important;
-   box-shadow: 0 4px 14px 0 var(--accent-glow);
+   box-shadow:
+      0 6px 20px rgba(0, 112, 243, 0.35),
+      0 2px 6px rgba(0, 0, 0, 0.15);
+   position: relative;
+   overflow: hidden;
+}
+
+.btn-primary::before {
+   content: "";
+   position: absolute;
+   inset: 0;
+   background: radial-gradient(
+      circle at top,
+      rgba(255, 255, 255, 0.25),
+      transparent 70%
+   );
+   opacity: 0.6;
+   pointer-events: none;
 }
 
 .btn-primary:hover {
-   background: #0060d0;
    transform: translateY(-2px);
-   box-shadow: 0 6px 20px rgba(0, 112, 243, 0.3);
+   box-shadow:
+      0 10px 30px rgba(0, 112, 243, 0.45),
+      0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn-outline {
@@ -316,6 +334,7 @@ a {
    font-size: 5rem;
    letter-spacing: -0.04em;
    margin-bottom: 2rem;
+   text-wrap: balance;
 }
 
 .gradient-text {
@@ -475,13 +494,34 @@ a {
    border: 1px solid var(--card-border);
    padding: 2.5rem;
    border-radius: 2rem;
-   transition: all 0.3s ease;
+   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+   position: relative;
+}
+
+.feature-card::after {
+   content: "";
+   position: absolute;
+   inset: 0;
+   border-radius: inherit;
+   background: radial-gradient(
+      circle at top,
+      rgba(0, 112, 243, 0.15),
+      transparent 70%
+   );
+   opacity: 0;
+   transition: opacity 0.3s ease;
 }
 
 .feature-card:hover {
+   transform: translateY(-8px) scale(1.01);
    border-color: var(--accent);
-   transform: translateY(-5px);
-   box-shadow: 0 10px 30px rgba(0, 112, 243, 0.1);
+   box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.15),
+      0 8px 20px rgba(0, 112, 243, 0.12);
+}
+
+.feature-card:hover::after {
+   opacity: 1;
 }
 
 .feature-icon {
