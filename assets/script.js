@@ -166,4 +166,94 @@ document.addEventListener("DOMContentLoaded", () => {
 
    // Set current year in footer
    document.getElementById("year").textContent = new Date().getFullYear();
+
+   // ------------------------------------------------------------------
+   // Fake AI Demo Logic
+   // ------------------------------------------------------------------
+   const promptSuggestions = document.querySelectorAll("#prompt-suggestions .chip");
+   const promptInput = document.getElementById("ai-prompt-input");
+   const generateBtn = document.getElementById("generate-btn");
+   const responseWrapper = document.getElementById("response-wrapper");
+   const loadingState = document.getElementById("loading-state");
+   const responseContent = document.getElementById("response-content");
+
+   const predefinedResponses = {
+      "Write marketing copy for a SaaS product": "Boost your team's productivity with Nexus AI — the intelligent assistant designed to streamline workflows, automate tasks, and help you focus on what truly matters.",
+      "Generate a product launch tweet": "🚀 Introducing Nexus AI — your new intelligent productivity assistant. Automate tasks, generate ideas, and move faster than ever. #NexusAI #Productivity #SaaS",
+      "Explain React hooks simply": "React hooks are functions that let you 'hook into' React state and lifecycle features from functional components, without writing a class layout.",
+      "default": "Nexus AI can handle that effortlessly. Our unified platform is designed to learn your workflow and provide actionable insights in real-time."
+   };
+
+   let isGenerating = false;
+
+   // Handle Chip Clicks
+   if (promptSuggestions.length > 0) {
+      promptSuggestions.forEach(chip => {
+         chip.addEventListener("click", () => {
+            promptInput.value = chip.textContent.trim();
+            promptInput.focus();
+         });
+      });
+   }
+
+   // Typewriter Effect Function
+   function typeWriterEffect(text, element, speed = 20) {
+      element.innerHTML = "";
+      let i = 0;
+      function type() {
+         if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+         } else {
+            isGenerating = false;
+            generateBtn.disabled = false;
+            generateBtn.innerHTML = '<i data-lucide="sparkles"></i><span>Generate</span>';
+            if (window.lucide) window.lucide.createIcons();
+         }
+      }
+      type();
+   }
+
+   // Handle AI Response Generation
+   function simulateAIResponse() {
+      const prompt = promptInput.value.trim();
+      if (!prompt || isGenerating) return;
+
+      isGenerating = true;
+      generateBtn.disabled = true;
+      generateBtn.innerHTML = '<i data-lucide="loader-2" class="spinner"></i><span>Thinking...</span>';
+      if (window.lucide) window.lucide.createIcons();
+      
+      // Show container & loading state
+      responseWrapper.classList.remove("hidden");
+      responseContent.innerHTML = "";
+      loadingState.classList.remove("hidden");
+
+      // Find response or use default
+      let responseText = predefinedResponses["default"];
+      const promptLower = prompt.toLowerCase();
+      for (const key in predefinedResponses) {
+         if (promptLower.includes(key.toLowerCase())) {
+            responseText = predefinedResponses[key];
+            break;
+         }
+      }
+
+      // Simulate network delay
+      setTimeout(() => {
+         loadingState.classList.add("hidden");
+         typeWriterEffect(responseText, responseContent);
+      }, 1500);
+   }
+
+   if (generateBtn && promptInput) {
+      generateBtn.addEventListener("click", simulateAIResponse);
+      promptInput.addEventListener("keydown", (e) => {
+         if (e.key === "Enter") {
+            e.preventDefault();
+            simulateAIResponse();
+         }
+      });
+   }
 });
