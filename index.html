@@ -101,6 +101,46 @@
             </div>
         </section>
 
+        <!-- Demo Section -->
+        <section id="demo" class="demo-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Try Nexus AI</span>
+                    <h2 class="section-title">Experience instant results</h2>
+                    <p class="section-subtitle">See how Nexus AI responds to your prompts in real-time.</p>
+                </div>
+
+                <div class="demo-container">
+                    <div class="prompt-suggestions" id="prompt-suggestions">
+                        <button class="chip">Write marketing copy for a SaaS product</button>
+                        <button class="chip">Generate a product launch tweet</button>
+                        <button class="chip">Explain React hooks simply</button>
+                    </div>
+                    
+                    <div class="prompt-box">
+                        <div class="input-wrapper">
+                            <i data-lucide="terminal" class="input-icon"></i>
+                            <input type="text" id="ai-prompt-input" placeholder="Ask Nexus AI something..." autocomplete="off">
+                        </div>
+                        <button id="generate-btn" class="btn btn-primary">
+                            <i data-lucide="sparkles"></i>
+                            <span>Generate</span>
+                        </button>
+                    </div>
+
+                    <div id="response-wrapper" class="response-wrapper hidden">
+                        <div class="response-container">
+                            <div id="loading-state" class="loading-state hidden">
+                                <i data-lucide="loader-2" class="spinner"></i>
+                                <span>Nexus AI is thinking...</span>
+                            </div>
+                            <div id="response-content" class="response-content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Features Section -->
         <section id="features" class="features">
             <div class="container">
