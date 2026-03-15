@@ -340,6 +340,7 @@ a {
 .gradient-text {
    background: var(--accent-gradient);
    -webkit-background-clip: text;
+   background-clip: text;
    -webkit-text-fill-color: transparent;
    background-size: 200% auto;
    animation: gradientShift 4s linear infinite;
@@ -858,7 +859,7 @@ input:checked + .slider:before {
    width: 3rem;
    height: 3rem;
    border-radius: 50%;
-   object-cover: cover;
+   object-fit: cover;
 }
 
 .user-info {
@@ -1023,6 +1024,152 @@ input:checked + .slider:before {
    border-radius: 50%;
 }
 
+/* Demo Section */
+.demo-section {
+   padding: 8rem 0;
+}
+
+.demo-container {
+   max-width: 800px;
+   margin: 0 auto;
+}
+
+.prompt-suggestions {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 0.75rem;
+   margin-bottom: 1.5rem;
+   justify-content: center;
+}
+
+.chip {
+   background: transparent;
+   border: 1px solid var(--card-border);
+   color: var(--text-muted);
+   padding: 0.5rem 1.25rem;
+   border-radius: 9999px;
+   font-size: 0.875rem;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   font-family: inherit;
+   font-weight: 500;
+}
+
+.chip:hover {
+   background: var(--glass);
+   border-color: var(--accent);
+   color: var(--accent);
+   transform: translateY(-2px);
+}
+
+.prompt-box {
+   display: flex;
+   gap: 1rem;
+   margin-bottom: 2rem;
+   position: relative;
+   z-index: 10;
+}
+
+.input-wrapper {
+   flex: 1;
+   position: relative;
+   display: flex;
+   align-items: center;
+}
+
+.input-icon {
+   position: absolute;
+   left: 1.25rem;
+   color: var(--text-muted);
+   width: 1.25rem;
+   height: 1.25rem;
+}
+
+#ai-prompt-input {
+   width: 100%;
+   padding: 1.25rem 1.25rem 1.25rem 3.5rem;
+   border: 1px solid var(--card-border);
+   border-radius: 9999px;
+   background: var(--card-bg);
+   color: var(--text);
+   font-size: 1rem;
+   font-family: inherit;
+   transition: all 0.3s ease;
+   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+#ai-prompt-input::placeholder {
+   color: var(--text-muted);
+}
+
+#ai-prompt-input:focus {
+   outline: none;
+   border-color: var(--accent);
+   box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+.response-wrapper {
+   transition: all 0.4s ease;
+   opacity: 1;
+   transform: translateY(0);
+}
+
+.response-wrapper.hidden {
+   display: none !important;
+}
+
+.response-container {
+   background: var(--card-bg);
+   border: 1px solid var(--card-border);
+   border-radius: 1.5rem;
+   padding: 2.5rem;
+   min-height: 120px;
+   box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.15);
+   position: relative;
+   overflow: hidden;
+   text-align: left;
+}
+
+.response-container::before {
+   content: '';
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 4px;
+   height: 100%;
+   background: var(--accent-gradient);
+}
+
+.loading-state {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.75rem;
+   color: var(--text-muted);
+   font-weight: 500;
+   height: 100%;
+}
+
+.loading-state.hidden {
+   display: none;
+}
+
+.spinner {
+   animation: spin 1s linear infinite;
+   color: var(--accent);
+}
+
+@keyframes spin {
+   from { transform: rotate(0deg); }
+   to { transform: rotate(360deg); }
+}
+
+.response-content {
+   color: var(--text);
+   line-height: 1.8;
+   font-size: 1.125rem;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
    .hero-title {
@@ -1061,6 +1208,15 @@ input:checked + .slider:before {
    .features-grid,
    .testimonials-grid {
       grid-template-columns: 1fr;
+   }
+
+   .prompt-box {
+      flex-direction: column;
+   }
+   
+   #generate-btn {
+      width: 100%;
+      justify-content: center;
    }
 
    .step,
