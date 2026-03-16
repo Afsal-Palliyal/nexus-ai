@@ -94,6 +94,7 @@ a {
 
 .btn-primary {
    background: var(--accent-gradient);
+   border: none;
    color: white !important;
    box-shadow:
       0 6px 20px rgba(0, 112, 243, 0.35),
