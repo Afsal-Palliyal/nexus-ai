@@ -60,22 +60,6 @@ The goal of this project was to **replicate real-world SaaS landing page design 
 
 ---
 
-## 📁 Project Structure
-nexus-ai/
-│
-├── assets/
-│ └── images/
-│ └── dashboard.png
-│
-├── favicon.svg
-├── index.html
-├── style.css
-├── script.js
-└── README.md
-
-
----
-
 ## 🚀 Getting Started
 
 ```bash
