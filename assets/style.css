@@ -1065,6 +1065,11 @@ input:checked + .slider:before {
    border-color: var(--accent);
 }
 
+.social-links a svg {
+   width: 20px;
+   height: 20px;
+}
+
 .footer-links h4 {
    margin-bottom: 1.5rem;
 }
